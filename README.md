@@ -53,11 +53,19 @@ Can you outsmart your opponent and claim victory in this magical test of strateg
 
 ---
 
+## 🙌 Node Modules
+
+-***npm i ws***
+-**npm i express**
+
+---
+
 ## 🙌 Contributions
 
 Feel free to fork this repo, suggest features, report bugs, or submit pull requests!
 
 ---
+
 
 ## 📬 Contact
 
