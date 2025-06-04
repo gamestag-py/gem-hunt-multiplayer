@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gem Hunter - Multiplayer Challenge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+      font-family: 'Arial', sans-serif;
+    }
+    .hero {
+      background-image: url('https://source.unsplash.com/random/1920x1080/?fantasy,forest,mushrooms');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .glow {
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    .mushroom-border {
+      border: 3px dashed #ff69b4;
+      border-radius: 15px;
+    }
+    .section-bg {
+      background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+    }
+
+    header{
+      background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+      
+    }
+
+    .bx{
+      background: #4B0082;
+    }
+  </style>
+</head>
+<body class="text-white">
+  <!-- Header Section -->
+  <header class="p-4 shadow-lg">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4 px-4">
+      <h1 class="text-2xl sm:text-3xl font-bold glow">Gem Hunter 💎</h1>
+      <nav class="flex flex-wrap justify-center gap-4 text-sm sm:text-base">
+        <a href="#about" class="hover:text-pink-300">About</a>
+        <a href="#how-to-play" class="hover:text-pink-300">How to Play</a>
+        <a href="#play-now" class="hover:text-pink-300">Play Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero py-20 text-center px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-extrabold mb-4 glow">Welcome to Gem Hunter</h2>
+      <p class="text-lg sm:text-xl mb-6">Hide the poison, outsmart your opponent, and win!</p>
+      <a href="#play-now" class="bx text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition">Play with a Friend! ❤️</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6 glow">About Gem Hunter</h3>
+      <p class="text-base sm:text-lg">
+        In <strong>Gem Hunter</strong>, two players enter a magical forest to test their cunning. Each hides a poison gem among several balls, then takes turns guessing where the other’s poison is hidden. The first to uncover the poison gem loses! Can you bluff and deduce your way to victory in this enchanting multiplayer challenge?
+      </p>
+    </div>
+  </section>
+
+  <!-- How to Play Section -->
+  <section id="how-to-play" class="section-bg py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h3 class="text-3xl font-bold mb-6 glow">How to Play</h3>
+      <ul class="text-base sm:text-lg list-disc list-inside text-left mx-auto max-w-md">
+        <li>Two players each hide a poison gem in one of several magical balls.</li>
+        <li>Take turns selecting balls to uncover their secrets.</li>
+        <li>Bluff and strategize to mislead your opponent.</li>
+        <li>The first to find the poison gem loses the game!</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Play Now Section -->
+  <section id="play-now" class="section-bg py-16 px-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold mb-6 glow">Ready to Hunt?</h3>
+      <p class="text-base sm:text-lg mb-6">Challenge a friend in the magical forest of <strong>Gem Hunter</strong>!</p>
+      <div class="mushroom-border p-6 glass-effect inline-block w-full max-w-md">
+        <p id="status" class="text-yellow-400 mb-4">Waiting for a player to join...</p>
+        <a href="#" id="playButton" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">Join the Hunt! 🌟</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="p-4 text-center text-sm sm:text-base" style="background-color: #4B0082;">
+    <p>© 2025 Gem Hunter. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('playButton').addEventListener('click', (e) => {
+      e.preventDefault();
+      const status = document.getElementById('status');
+      status.textContent = 'Connecting to a magical forest...';
+      location.href = 'join';
+    });
+  </script>
+</body>
+</html>
