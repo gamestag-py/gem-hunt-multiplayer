@@ -290,8 +290,8 @@
         document.getElementById('create-room-form').addEventListener('submit', function(event) {
             event.preventDefault();
             roomId = generateRoomId();
-            document.getElementById('join-link').href = 'index.html?roomId=' + roomId;
-            document.getElementById('join-link').innerText = 'http://gem.naxmedia.one/index.html?roomId=' + roomId;
+            document.getElementById('join-link').href = 'join.html?roomId=' + roomId;
+            document.getElementById('join-link').innerText = 'http://gem.naxmedia.one/join.html?roomId=' + roomId;
             showPopup();
         });
 
