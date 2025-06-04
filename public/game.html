@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gems and Poison Circle Game UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css" />
+    <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+            height: auto;
+            width: 100vw;
+            min-height: 100vh;
+            background: url('https://i.ibb.co/HpncSzvG/image-Picsart-Ai-Image-Enhancer.png')no-repeat center center;
+            background-size: cover;
+        }
+
+        .game-container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8), rgba(49, 49, 49, 0.2));
+            overflow: hidden;
+
+        }
+
+        .heart-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .small-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .chat-message {
+            max-height: 300px;
+            overflow-y: auto;
+            color: white;
+        }
+
+        .themeBg {
+            background: rgba(173, 216, 230, 0.07);
+            border-radius: 16px;
+            padding: 20px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(173, 216, 230, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            color: #e3f6ff;
+            transition: all 0.3s ease;
+        }
+
+        .gameTitle {
+            font-family: "Cherry Bomb One", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            letter-spacing: 4px;
+        }
+
+        #chatInput {
+            color: black !important;
+        }
+
+        /* Shepherd container */
+        .shepherd-element {
+            background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(44, 44, 84, 0.8);
+            color: #c0c0d8;
+            /* soft light text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: 1px solid #444466;
+        }
+
+        /* Title style */
+        .shepherd-title {
+            color: #000;
+            /* pastel purple */
+            font-weight: 600;
+        }
+
+        /* Content text */
+        .shepherd-text {
+            color: #d0d0e8;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        /* Buttons */
+        .shepherd-button {
+            background: #4c4c82;
+            color: #e0e0ff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .shepherd-button:hover {
+            background: #7a78c8;
+            color: white;
+        }
+
+        /* Highlighted element */
+        .my-highlight {
+            box-shadow: 0 0 12px 4px #7a78c8;
+            border-radius: 8px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .shepherd-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .shepherd-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .shepherd-has-title .shepherd-content .shepherd-header {
+            padding: 4px 22px;
+        }
+
+        .gameBlocker {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #00b6ff0d;
+            display: none;
+            z-index: 2;
+        }
+
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 3;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .modal p {
+            margin: 0 0 20px;
+            font-size: 1.2em;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+
+        .restart-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .restart-btn:hover {
+            background: #45a049;
+        }
+
+        .quit-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .quit-btn:hover {
+            background: #da190b;
+        }
+
+        .modaldiv {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+            display: none;
+        }
+
+        .bg-x {
+            --tw-bg-opacity: 1;
+            background-color: rgb(110 159 255);
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center">
+    <div class="modaldiv">
+        <div class="modal">
+            <p><span id="reqBy"></span> Requested to replay</p>
+            <button onclick="window.location.reload()" class="restart-btn">Restart</button>
+            <button onclick="window.location.href = 'index.html'" class="quit-btn">Quit</button>
+        </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-6 p-4">
+        <!-- Game Area -->
+        <div class="themeBg p-6 rounded-lg shadow-lg">
+            <h1 class="text-2xl font-bold mb-4 text-center gameTitle">Find The Gem💎</h1>
+            <p id="status" class="text-lg mb-4 text-center">Play with your 💎!</p>
+            <div id="gameContainer" class="game-container mx-auto">
+                <div class="gameBlocker"></div>
+                <div id="heartBorder" class="heart-border"></div>
+                <div id="gameCircles"></div>
+            </div>
+            <button id="restartButton"
+                class="mt-4 w-full bg-yellow-400 text-purple-800 py-2 rounded hover:bg-yellow-500">Waiting for players
+                to join...</button>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="themeBg p-6 rounded-lg shadow-lg w-full md:w-80">
+            <h2 class="text-xl font-bold mb-4 text-white-600">Chat</h2>
+            <div id="chatMessages" class="chat-message mb-4 p-2 border rounded border-white-300"></div>
+            <div class="flex gap-2">
+                <input id="chatInput" type="text" class="flex-1 p-2 border rounded border-black-300"
+                    placeholder="Type a message...">
+                <button id="sendButton" class="bg-x text-white px-4 py-2 rounded hover:bg-pink-600">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+
+        // Initialize the UI
+        function initUI() {
+            const circles = [];
+            document.getElementById('gameCircles').innerHTML = '';
+            document.getElementById('heartBorder').innerHTML = '';
+
+            // Place hearts around the border
+            const radius = 150; // Half of container size
+            const numHearts = 30;
+            for (let i = 0; i < numHearts; i++) {
+                const angle = (i / numHearts) * 2 * Math.PI;
+                const x = radius + radius * Math.cos(angle) - 15; // Adjust for heart size
+                const y = radius + radius * Math.sin(angle) - 15;
+                const heart = document.createElement('div');
+                heart.textContent = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                heart.style.fontSize = '20px';
+                document.getElementById('heartBorder').appendChild(heart);
+            }
+
+        }
+
+        // Chat functionality
+        function addChatMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.className = 'text-white-800';
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        document.getElementById('sendButton').addEventListener('click', () => {
+            const chatInput = document.getElementById('chatInput');
+            const message = chatInput.value.trim();
+            if (message) {
+                socket.send(JSON.stringify({
+                    type: "chat",
+                    message: message
+                }))
+                chatInput.value = '';
+            }
+        });
+
+        document.getElementById('chatInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('sendButton').click();
+            }
+        });
+
+        // Start the UI
+        initUI();
+    </script>
+
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const roomId = params.get('room');
+        const username = params.get('username');
+
+
+        let objects;
+
+
+        const socket = new WebSocket('wss://websocketurl');
+
+        socket.onopen = (event) => {
+            socket.send(JSON.stringify({
+                type: 'join',
+                room: roomId,
+                username: username,
+            }))
+            log('Connecting To Room ' + roomId);
+        }
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            console.log(data);
+
+            if (data.type === 'joined') {
+                log('Joined room: ' + data.room);
+            } else if (data.type === 'chat') {
+                log(data.sender + ': ' + data.message);
+            } else if (data.type === 'roomReady') {
+                document.getElementById('gameCircles').innerHTML = data.gameStructure;
+                if (data.state.p1 == username) {
+                    document.getElementById('restartButton').innerText = `${data.state.p2} Joined`;
+                } else {
+                    document.getElementById('restartButton').innerText = `${data.state.p1} Joined`;
+                }
+                log(data.message);
+                objects = document.querySelectorAll('.small-circle');
+                objects.forEach(element => {
+                    element.addEventListener("click", handleClick);
+                });
+
+                tour.start();
+
+            } else if (data.type === 'startGame') {
+
+                const p1 = data.gameState.p1;
+                const p2 = data.gameState.p2;
+                const turn = data.turn;
+                const restartButton = document.getElementById('restartButton');
+                if (turn === username) {
+                    restartButton.innerText = 'Your Turn';
+                } else {
+                    restartButton.innerText = `${turn}'s turn`;
+                    document.querySelector('.gameBlocker').style.display = 'block';
+                }
+
+                objects.forEach(element => {
+                    element.addEventListener("click", play);
+                });
+
+
+            }
+            if (data.type === 'ok') {
+                if (data.turn == username) {
+                    document.querySelector('.gameBlocker').style.display = 'none';
+                    document.getElementById('restartButton').innerText = 'Your Turn';
+                } else {
+                    document.querySelector('.gameBlocker').style.display = 'block';
+                    document.getElementById('restartButton').innerText = `${data.turn}'s Turn`;
+                }
+
+                objects[data.index].innerText = '💎';
+                objects[data.index].style.border = '2px solid gold';
+            }
+            if (data.type === 'gameover') {
+                objects[data.index].innerText = '☠️';
+                objects[data.index].style.border = '2px solid red';
+                document.querySelector('.gameBlocker').style.display = 'block';
+
+                objects.forEach(element => {
+                    element.removeEventListener('click', play);
+                });
+
+                document.getElementById('restartButton').innerText = `Restart Game`;
+                document.getElementById('restartButton').onclick = () => {
+                    socket.send(JSON.stringify({
+                        type: 'restart',
+                        room: roomId,
+                        reqBy: username,
+                    }))
+                }
+
+
+
+                if (data.by !== username) {
+                    win();
+                    document.getElementById('status').innerText = `You Won!`;
+                } else {
+                    document.getElementById('status').innerText = `You Lost!`;
+                }
+
+            } else if (data.type === 'restart') {
+                if (data.reqBy !== username) {
+                    restartPop(data.reqBy);
+                } else {
+                    window.location.reload();
+                }
+
+            } else if (data.type === 'opponentLeft') {
+                addChatMessage(data.message);
+                document.getElementById('restartButton').innerText = data.message;
+                document.querySelector('.gameBlocker').style.display = 'none';
+            } else if (data.error) {
+                log('Error: ' + data.error);
+                if (data.error == 'room and username required') {
+                    location.href = 'index.html?err=' + data.error;
+                } else if (data.error == 'Username already taken in this room') {
+                    location.href = 'index.html?roomId=' + roomId + '&err=' + data.error;
+                }
+            }
+        }
+
+
+        socket.onclose = () => {
+            console.log('Disconnected from server');
+        };
+
+
+        function restartPop(by) {
+            document.getElementById('reqBy').innerText = by;
+            document.querySelector('.modaldiv').style.display = 'block';
+        }
+
+        function log(text) {
+            newText = text.split(':');
+            if (newText[0] == username) {
+                newText[0] = 'You';
+                newMessage = newText[0] + ':' + newText[1];
+                addChatMessage(newMessage);
+            } else {
+                addChatMessage(text);
+            }
+        }
+
+        function handleClick(event) {
+            const index = event.target.getAttribute('data-index');
+            console.log("Clicked circle index:", index);
+            setPoison(index);
+            objects.forEach(el => el.removeEventListener("click", handleClick));
+        }
+
+        function play(event) {
+            const index = event.target.getAttribute('data-index');
+            socket.send(JSON.stringify({
+                type: 'play',
+                index: index,
+                by: username
+            }))
+            objects[index].removeEventListener('click', play);
+        }
+
+        function setPoison(index) {
+            console.log(index);
+            socket.send(JSON.stringify({
+                type: 'setPoison',
+                index: index,
+                by: username
+            }))
+
+            objects.forEach(el => {
+                el.removeEventListener('click', handleClick);
+            });
+
+        }
+
+
+
+
+        const tour = new Shepherd.Tour({
+            defaultStepOptions: {
+                scrollTo: true,
+                classes: 'shadow-md bg-purple-dark',
+                cancelIcon: {
+                    enabled: true
+                }
+            }
+        });
+
+        tour.addStep({
+            title: 'Tutorial!',
+            text: 'Click on any ball to hide Poison in it.',
+            classes: 'my-custom-class',
+            attachTo: {
+                element: '#gameContainer',
+                on: 'top'
+            },
+            buttons: [{
+                text: 'Ok',
+                action: tour.complete
+            }]
+        });
+
+
+
+
+        function win() {
+            var duration = 15 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = {
+                startVelocity: 30,
+                spread: 360,
+                ticks: 60,
+                zIndex: 0
+            };
+
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            var interval = setInterval(function () {
+                var timeLeft = animationEnd - Date.now();
+
+                if (timeLeft <= 0) {
+                    return clearInterval(interval);
+                }
+
+                var particleCount = 50 * (timeLeft / duration);
+                // since particles fall down, start a bit higher than random
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.1, 0.3),
+                        y: Math.random() - 0.2
+                    }
+                });
+                confetti({
+                    ...defaults,
+                    particleCount,
+                    origin: {
+                        x: randomInRange(0.7, 0.9),
+                        y: Math.random() - 0.2
+                    }
+                });
+            }, 250);
+        }
+    </script>
+</body>
+
+</html>

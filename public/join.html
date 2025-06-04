@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Room Interface</title>
+    <style>
+        body {
+            background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 0.8rem 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            border: none;
+            border-radius: 10px;
+            background: #4a4a8e;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background 0.3s;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background: #6a6ab4;
+        }
+
+        .form-container {
+            display: none;
+            margin-top: 1.5rem;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+
+        input[type="text"] {
+            padding: 0.6rem 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border: 2px solid #4a4a8e;
+            border-radius: 8px;
+            width: 100%;
+            margin: 0.5rem 0;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #6a6ab4;
+            box-shadow: 0 0 8px rgba(106, 106, 180, 0.5);
+        }
+
+        input[type="text"]::placeholder {
+            color: #aaaaaa;
+        }
+
+        input[type="submit"] {
+            padding: 0.6rem 1.2rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            border: none;
+            border-radius: 8px;
+            background: #4a4a8e;
+            color: #ffffff;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background: #6a6ab4;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, #0d0d0d, #1f1c2c, #2c2c54);
+            border: 2px solid #4a4a8e;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            z-index: 1000;
+        }
+
+        .popup.active {
+            display: block;
+        }
+
+        .popup p {
+            margin: 0 0 1rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+        }
+
+        .popup a {
+            color: #ffffff;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        .popup button {
+            width: 100%;
+            max-width: 200px;
+            margin-top: 1rem;
+        }
+
+        .copy-button {
+            padding: 0.6rem 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-top: 0.5rem;
+            background: #4a4a8e;
+            border-radius: 8px;
+        }
+
+        .copy-button:hover {
+            background: #6a6ab4;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            input[type="text"] {
+                max-width: 100%;
+            }
+
+            .popup {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .popup {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay" id="popup-overlay"></div>
+    <div class="container">
+        <h1>Game Room</h1>
+        <div class="buttons">
+            <button onclick="showForm('join')">Join Room</button>
+            <button onclick="showForm('create')">Create Room</button>
+        </div>
+        <div id="join-form" class="form-container">
+            <form method="get" action="game.html">
+                <input type="text" name="username" placeholder="Enter Your Name" required>
+                <input type="text" name="room" id="roomId" placeholder="Enter Room ID" required>
+                <input type="submit" value="Join">
+            </form>
+        </div>
+        <div id="create-form" class="form-container">
+            <form id="create-room-form">
+                <input type="text" id="username" name="username" placeholder="Enter Your Name" required>
+                <input type="submit" value="Create">
+            </form>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <p>Share this link to invite players:</p>
+        <p><a id="join-link" href="http://localhost:8080/room/12345">http://localhost:8080/room/12345</a></p>
+        <button class="copy-button" onclick="copyLink()">Copy Link</button>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const error = params.get('err');
+        const room = params.get('roomId');
+        if (error) {
+            alert(error);
+        }
+
+        if(room){
+            showForm('join');
+            document.getElementById('roomId').value = room;
+        }
+
+        function showForm(formType) {
+            const joinForm = document.getElementById('join-form');
+            const createForm = document.getElementById('create-form');
+            joinForm.classList.remove('active');
+            createForm.classList.remove('active');
+            if (formType === 'join') {
+                joinForm.classList.add('active');
+            } else if (formType === 'create') {
+                createForm.classList.add('active');
+            }
+        }
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('popup-overlay');
+            popup.classList.add('active');
+            overlay.classList.add('active');
+        }
+
+        function copyLink() {
+            const link = document.getElementById('join-link').href;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Link copied to clipboard!');
+            }).catch(err => {
+                alert('Failed to copy link: ' + err);
+            });
+        }
+
+        
+        let roomId;
+
+        // Attach event listener to the create room form
+        document.getElementById('create-room-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            roomId = generateRoomId();
+            document.getElementById('join-link').href = 'index.html?roomId=' + roomId;
+            document.getElementById('join-link').innerText = 'http://gem.naxmedia.one/index.html?roomId=' + roomId;
+            showPopup();
+        });
+
+        function startGame() {
+            const username = document.getElementById('username').value;
+            location.href = 'game.html?room=' + roomId + '&username=' + username;
+        }
+
+        function generateRoomId(length = 10) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let roomId = '';
+            for (let i = 0; i < length; i++) {
+                roomId += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return roomId;
+        }
+    </script>
+</body>
+
+</html>
