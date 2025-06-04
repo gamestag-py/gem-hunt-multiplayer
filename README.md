@@ -43,7 +43,7 @@ Can you outsmart your opponent and claim victory in this magical test of strateg
 
 ## 📸 Screenshot
 
-![Gem Hunter Gameplay](https://i.ibb.co/Mxh4j7w/image.png)
+<img src="https://i.ibb.co/Mxh4j7wk/image.png" alt="Game Screenshot" width="500"/>
 
 ---
 
