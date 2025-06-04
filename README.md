@@ -37,19 +37,19 @@ Can you outsmart your opponent and claim victory in this magical test of strateg
 - **HTML**
 - **Tailwind CSS**
 - **JavaScript**
-- **WebSockets** (for real-time multiplayer communication)
+- **WebSockets**
 
 ---
 
-## 🚧 Project Status
+## 📸 Screenshot
 
-This game is actively being developed. New features and improvements are on the way!
+![Gem Hunter Gameplay](https://i.ibb.co/Mxh4j7w/image.png)
 
 ---
 
-## 📸 Screenshots
+## 🚀 Live Demo
 
-*(Add game screenshots here if you have them)*
+🔗 [Play Now](https://gem.naxmedia.one)
 
 ---
 
@@ -69,7 +69,3 @@ Feel free to fork this repo, suggest features, report bugs, or submit pull reque
 
 For questions, feedback, or collaboration:  
 **[Your Name or GitHub Profile]**
-
----
-
-🔗 [Play Now](#) *(Add a live link if hosted)*  
