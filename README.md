@@ -1,32 +1,75 @@
-🎮 Gem Hunter - Multiplayer
-Gem Hunter is a fast-paced, browser-based multiplayer game of deception and deduction.
+# 🎮 Gem Hunter - Multiplayer
 
-🧪 About the Game
-Step into a mystical forest where two players face off in a battle of wits. Each player secretly hides a poison gem among ordinary gems, then takes turns trying to uncover the opponent’s trap. Choose carefully—find the poison gem, and you lose!
+**Gem Hunter** is a fast-paced, browser-based multiplayer game built with **HTML, Tailwind CSS, JavaScript, and WebSockets**.
 
-Do you have what it takes to bluff, outsmart, and survive?
+## 🧪 About the Game
 
-🌟 Features
-⚔️ 2-Player Online Gameplay
+Step into a mystical forest where two players face off in a battle of wits and deception.
 
-🎭 Bluffing & Strategy Mechanics
+Each player hides a **poison gem** among several ordinary ones, then takes turns choosing from the opponent's hidden gems. The twist? The first to uncover the poison gem **loses** the game!
 
-✨ Mystical Forest Visual Theme
+Can you outsmart your opponent and claim victory in this magical test of strategy?
 
-💬 Real-Time Turn-Based Interaction
+---
 
-🚀 Tech Stack
-HTML / CSS / JavaScript
+## 🌟 Features
 
-PHP (backend logic)
+- 🔄 Real-time **multiplayer** powered by WebSockets  
+- 🧠 Strategic **bluffing and deduction** gameplay  
+- 🎨 Beautiful, responsive UI with **Tailwind CSS**  
+- 🌐 100% browser-based — no installs, just play!
 
-WebSockets (real-time multiplayer)
+---
 
-📌 How to Play
-Each player hides one poison gem among several safe gems.
+## 🕹️ How to Play
 
-Take turns picking the opponent’s gems.
+1. **Start a game** with another player.
+2. Each player secretly places one **poison gem** among a set of gems.
+3. Players **take turns** selecting one gem from the opponent's set.
+4. The first to pick the **poison gem** loses!
 
-The player who finds the poison gem loses the game.
+> 💡 Tip: Bluff wisely and try to read your opponent’s moves!
 
-Ready to play mind games in a magical world?
+---
+
+## 📦 Tech Stack
+
+- **HTML**
+- **Tailwind CSS**
+- **JavaScript**
+- **WebSockets** (for real-time multiplayer communication)
+
+---
+
+## 🚧 Project Status
+
+This game is actively being developed. New features and improvements are on the way!
+
+---
+
+## 📸 Screenshots
+
+*(Add game screenshots here if you have them)*
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙌 Contributions
+
+Feel free to fork this repo, suggest features, report bugs, or submit pull requests!
+
+---
+
+## 📬 Contact
+
+For questions, feedback, or collaboration:  
+**[Your Name or GitHub Profile]**
+
+---
+
+🔗 [Play Now](#) *(Add a live link if hosted)*  
