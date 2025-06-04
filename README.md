@@ -53,12 +53,6 @@ Can you outsmart your opponent and claim victory in this magical test of strateg
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
 ## 🙌 Contributions
 
 Feel free to fork this repo, suggest features, report bugs, or submit pull requests!
@@ -68,4 +62,4 @@ Feel free to fork this repo, suggest features, report bugs, or submit pull reque
 ## 📬 Contact
 
 For questions, feedback, or collaboration:  
-**[Your Name or GitHub Profile]**
+**[Shivansh Agrawal or [gamestag-py](https://github.com/gamestag-py)]**
