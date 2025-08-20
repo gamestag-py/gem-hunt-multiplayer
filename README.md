@@ -49,7 +49,7 @@ Can you outsmart your opponent and claim victory in this magical test of strateg
 
 ## 🚀 Live Demo
 
-🔗 [Play Now](https://gem.naxmedia.one)
+🔗 [Play Now](https://gem.gogetxsuit.xyz)
 
 ---
 
