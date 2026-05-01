@@ -367,9 +367,6 @@ wss.on('connection', (ws) => {
 
 
 
-console.log('WebSocket server running on ws://localhost:3000');
-
-
 const numCircles = 15;
 const colors = ['bg-blue-400', 'bg-green-400', 'bg-yellow-400', 'bg-pink-400', 'bg-purple-400'];
 
